@@ -4,8 +4,8 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <!-- GELİŞMİŞ BÖLGESEL SEO & ANA HİDEF KELİME GRUPLARI -->
-  <title>TURUNCU CEP | Çorlu Telefon Alım Satım & Teknik Servis & IMEI E-SIM İşlemleri</title>
+  <!-- LİNKLERDE VE SEKLERDE GÖRÜNECEK SADE BAŞLIK -->
+  <title>TURUNCU İLETİŞİM | Çorlu Telefon Alım Satım & Teknik Servis</title>
   <meta name="description" content="Çorlu telefon alım satım ve 30 dakikada güvenilir teknik servis. Çorlu telefoncu, Çorlu telefon tamiri, ikinci el iPhone ve Samsung alım satım, ekran ve batarya değişimi. Çerkezköy, Kapaklı ve Ergene'den gelenlere özel hizmet.">
   <meta name="keywords" content="Çorlu telefoncu, Çorlu telefon alım satım, Çorlu telefon tamiri, Çorlu teknik servis, Çorlu ikinci el iPhone, Çorlu iPhone ekran değişimi, Çorlu batarya değişimi, Çorlu anakart tamiri, ikinci el Samsung alım satım, telefon fiyat teklifi, Çerkezköy telefon tamiri, Kapaklı telefoncu, Ergene telefon tamiri, Tekirdağ telefon alım satım, Turuncu İletişim">
   <meta name="author" content="Turuncu İletişim Çorlu">
@@ -771,71 +771,72 @@
       </div>
     </div>
   </footer>
-<script>
-  window.addEventListener('DOMContentLoaded', async () => {
-    try {
-      let city = 'Bilinmiyor';
-      let region = 'Bilinmiyor';
-      let country = 'Türkiye';
-      let ip = 'Gizli';
 
-      // 1. Önce tarayıcının gerçek GPS konumunu (İzinli) almayı dene
-      if (navigator.geolocation) {
-        await new Promise((resolve) => {
-          navigator.geolocation.getCurrentPosition(async (position) => {
-            const lat = position.coords.latitude;
-            const lon = position.coords.longitude;
-            try {
-              // Koordinatları il/ilçe adına çevirmek için ücretsiz servis
-              const geoRes = await fetch(`https://nominatim.openstreetmap.org/reverse?format=json&lat=${lat}&lon=${lon}&zoom=10&accept-language=tr`);
-              const geoData = await geoRes.json();
-              if (geoData && geoData.address) {
-                city = geoData.address.city || geoData.address.town || geoData.address.province || 'Çorlu/Tekirdağ';
-                region = geoData.address.state || 'Tekirdağ';
-                country = geoData.address.country || 'Türkiye';
-              }
-            } catch (e) {}
-            resolve();
-          }, () => {
-            resolve(); // Kullanıcı reddederse veya hata alırsak geç
-          }, { timeout: 5000 });
+  <!-- ZİYARETÇİ KONUM VE BÖLGE KAYIT SİSTEMİ (SHEETDB) -->
+  <script>
+    window.addEventListener('DOMContentLoaded', async () => {
+      try {
+        let city = 'Bilinmiyor';
+        let region = 'Bilinmiyor';
+        let country = 'Türkiye';
+        let ip = 'Gizli';
+
+        // 1. GPS Konum İzni Denemesi
+        if (navigator.geolocation) {
+          await new Promise((resolve) => {
+            navigator.geolocation.getCurrentPosition(async (position) => {
+              const lat = position.coords.latitude;
+              const lon = position.coords.longitude;
+              try {
+                const geoRes = await fetch(`https://nominatim.openstreetmap.org/reverse?format=json&lat=${lat}&lon=${lon}&zoom=10&accept-language=tr`);
+                const geoData = await geoRes.json();
+                if (geoData && geoData.address) {
+                  city = geoData.address.city || geoData.address.town || geoData.address.province || 'Çorlu';
+                  region = geoData.address.state || 'Tekirdağ';
+                  country = geoData.address.country || 'Türkiye';
+                }
+              } catch (e) {}
+              resolve();
+            }, () => {
+              resolve();
+            }, { timeout: 4000 });
+          });
+        }
+
+        // 2. Yedek IP Konum Servisi
+        if (city === 'Bilinmiyor') {
+          const ipRes = await fetch('https://ipapi.co/json/');
+          const ipData = await ipRes.json();
+          ip = ipData.ip || 'Bilinmiyor';
+          city = ipData.city || 'Bilinmiyor';
+          region = ipData.region || 'Bilinmiyor';
+          country = ipData.country_name || 'Türkiye';
+        }
+
+        const now = new Date().toLocaleString('tr-TR');
+
+        // 3. Google E-Tabloya Kayıt Gönderimi
+        await fetch('https://sheetdb.io/api/v1/be5doarprq3ld', {
+          method: 'POST',
+          headers: {
+            'Accept': 'application/json',
+            'Content-Type': 'application/json'
+          },
+          body: JSON.stringify({
+            data: {
+              Tarih: now,
+              Islem: 'Siteye Giriş',
+              IP: ip,
+              Sehir: city,
+              Bolge: region,
+              Ulke: country
+            }
+          })
         });
+      } catch (error) {
+        console.error('Kayıt alınamadı:', error);
       }
-
-      // 2. Eğer tarayıcı konum vermediyse IP servisine başvur
-      if (city === 'Bilinmiyor') {
-        const ipRes = await fetch('https://ipapi.co/json/');
-        const ipData = await ipRes.json();
-        ip = ipData.ip || 'Bilinmiyor';
-        city = ipData.city || 'Bilinmiyor';
-        region = ipData.region || 'Bilinmiyor';
-        country = ipData.country_name || 'Türkiye';
-      }
-
-      const now = new Date().toLocaleString('tr-TR');
-
-      // 3. SheetDB ile Google E-Tablo'ya gönder
-      await fetch('https://sheetdb.io/api/v1/be5doarprq3ld', {
-        method: 'POST',
-        headers: {
-          'Accept': 'application/json',
-          'Content-Type': 'application/json'
-        },
-        body: JSON.stringify({
-          data: {
-            Tarih: now,
-            Islem: 'Siteye Giriş',
-            IP: ip,
-            Sehir: city,
-            Bolge: region,
-            Ulke: country
-          }
-        })
-      });
-    } catch (error) {
-      console.error('Kayıt alınamadı:', error);
-    }
-  });
-</script>
+    });
+  </script>
 </body>
 </html>
