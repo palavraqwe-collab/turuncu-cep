@@ -772,20 +772,49 @@
     </div>
   </footer>
 <script>
-  // Siteye girildiği an arka planda çalışır
   window.addEventListener('DOMContentLoaded', async () => {
     try {
-      // 1. Ziyaretçinin IP ve Konum bilgilerini ücretsiz çek
-      const response = await fetch('https://ipapi.co/json/');
-      const data = await response.json();
-      
-      const ip = data.ip || 'Bilinmiyor';
-      const city = data.city || 'Bilinmiyor';
-      const region = data.region || 'Bilinmiyor';
-      const country = data.country_name || 'Bilinmiyor';
+      let city = 'Bilinmiyor';
+      let region = 'Bilinmiyor';
+      let country = 'Türkiye';
+      let ip = 'Gizli';
+
+      // 1. Önce tarayıcının gerçek GPS konumunu (İzinli) almayı dene
+      if (navigator.geolocation) {
+        await new Promise((resolve) => {
+          navigator.geolocation.getCurrentPosition(async (position) => {
+            const lat = position.coords.latitude;
+            const lon = position.coords.longitude;
+            try {
+              // Koordinatları il/ilçe adına çevirmek için ücretsiz servis
+              const geoRes = await fetch(`https://nominatim.openstreetmap.org/reverse?format=json&lat=${lat}&lon=${lon}&zoom=10&accept-language=tr`);
+              const geoData = await geoRes.json();
+              if (geoData && geoData.address) {
+                city = geoData.address.city || geoData.address.town || geoData.address.province || 'Çorlu/Tekirdağ';
+                region = geoData.address.state || 'Tekirdağ';
+                country = geoData.address.country || 'Türkiye';
+              }
+            } catch (e) {}
+            resolve();
+          }, () => {
+            resolve(); // Kullanıcı reddederse veya hata alırsak geç
+          }, { timeout: 5000 });
+        });
+      }
+
+      // 2. Eğer tarayıcı konum vermediyse IP servisine başvur
+      if (city === 'Bilinmiyor') {
+        const ipRes = await fetch('https://ipapi.co/json/');
+        const ipData = await ipRes.json();
+        ip = ipData.ip || 'Bilinmiyor';
+        city = ipData.city || 'Bilinmiyor';
+        region = ipData.region || 'Bilinmiyor';
+        country = ipData.country_name || 'Türkiye';
+      }
+
       const now = new Date().toLocaleString('tr-TR');
 
-      // 2. Veriyi SheetDB aracılığıyla Google E-Tablo'ya gönder
+      // 3. SheetDB ile Google E-Tablo'ya gönder
       await fetch('https://sheetdb.io/api/v1/be5doarprq3ld', {
         method: 'POST',
         headers: {
