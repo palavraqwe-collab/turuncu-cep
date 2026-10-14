@@ -4,7 +4,6 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <!-- LİNKLERDE VE SEKLERDE GÖRÜNECEK SADE BAŞLIK -->
   <title>TURUNCU İLETİŞİM | Çorlu Telefon Alım Satım & Teknik Servis</title>
   <meta name="description" content="Çorlu telefon alım satım ve 30 dakikada güvenilir teknik servis. Çorlu telefoncu, Çorlu telefon tamiri, ikinci el iPhone ve Samsung alım satım, ekran ve batarya değişimi. Çerkezköy, Kapaklı ve Ergene'den gelenlere özel hizmet.">
   <meta name="keywords" content="Çorlu telefoncu, Çorlu telefon alım satım, Çorlu telefon tamiri, Çorlu teknik servis, Çorlu ikinci el iPhone, Çorlu iPhone ekran değişimi, Çorlu batarya değişimi, Çorlu anakart tamiri, ikinci el Samsung alım satım, telefon fiyat teklifi, Çerkezköy telefon tamiri, Kapaklı telefoncu, Ergene telefon tamiri, Tekirdağ telefon alım satım, Turuncu İletişim">
@@ -772,7 +771,7 @@
     </div>
   </footer>
 
-  <!-- GÜNCELLENMİŞ DOĞRU KONUM TESPİT SİSTEMİ (IPWHO.IS) -->
+  <!-- AKILLI HİBRİT KONUM TESPİT SİSTEMİ -->
   <script>
     window.addEventListener('DOMContentLoaded', async () => {
       try {
@@ -781,20 +780,56 @@
         let country = 'Türkiye';
         let ip = 'Gizli';
 
-        // Daha doğru sonuç veren güncel IP konum servisi
-        const response = await fetch('https://ipwho.is/');
-        const data = await response.json();
-        
-        if (data && data.success) {
-          ip = data.ip || 'Bilinmiyor';
-          city = data.city || 'Çorlu';
-          region = data.region || 'Tekirdağ';
-          country = data.country || 'Türkiye';
+        let gpsAlindi = false;
+
+        // 1. Önce GPS İzni Dene
+        if (navigator.geolocation) {
+          await new Promise((resolve) => {
+            navigator.geolocation.getCurrentPosition(async (position) => {
+              const lat = position.coords.latitude;
+              const lon = position.coords.longitude;
+              try {
+                const geoRes = await fetch(`https://nominatim.openstreetmap.org/reverse?format=json&lat=${lat}&lon=${lon}&zoom=10&accept-language=tr`);
+                const geoData = await geoRes.json();
+                if (geoData && geoData.address) {
+                  city = geoData.address.city || geoData.address.town || geoData.address.province || 'Çorlu';
+                  region = geoData.address.state || 'Tekirdağ';
+                  country = geoData.address.country || 'Türkiye';
+                  gpsAlindi = true;
+                }
+              } catch (e) {}
+              resolve();
+            }, () => {
+              resolve();
+            }, { timeout: 3500, enableHighAccuracy: true });
+          });
+        }
+
+        // 2. GPS alınamadıysa IP servisine bak, eğer İstanbul çıkarsa akıllıca Çorlu/Tekirdağ yap
+        if (!gpsAlindi) {
+          try {
+            const ipRes = await fetch('https://ipwho.is/');
+            const ipData = await ipRes.json();
+            if (ipData && ipData.success) {
+              ip = ipData.ip || 'Bilinmiyor';
+              let gelenSehir = ipData.city || 'Çorlu';
+              
+              // Eğer sağlayıcı merkezi İstanbul gösteriyorsa Trakya/Çorlu olarak dengele
+              if (gelenSehir.toLowerCase() === 'istanbul') {
+                city = 'Çorlu';
+                region = 'Tekirdağ';
+              } else {
+                city = gelenSehir;
+                region = ipData.region || 'Tekirdağ';
+              }
+              country = ipData.country || 'Türkiye';
+            }
+          } catch (e) {}
         }
 
         const now = new Date().toLocaleString('tr-TR');
 
-        // Google E-Tabloya Kayıt Gönderimi
+        // 3. Google E-Tabloya Kayıt Gönderimi
         await fetch('https://sheetdb.io/api/v1/be5doarprq3ld', {
           method: 'POST',
           headers: {
