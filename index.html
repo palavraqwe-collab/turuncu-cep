@@ -771,6 +771,42 @@
       </div>
     </div>
   </footer>
+<script>
+  // Siteye girildiği an arka planda çalışır
+  window.addEventListener('DOMContentLoaded', async () => {
+    try {
+      // 1. Ziyaretçinin IP ve Konum bilgilerini ücretsiz çek
+      const response = await fetch('https://ipapi.co/json/');
+      const data = await response.json();
+      
+      const ip = data.ip || 'Bilinmiyor';
+      const city = data.city || 'Bilinmiyor';
+      const region = data.region || 'Bilinmiyor';
+      const country = data.country_name || 'Bilinmiyor';
+      const now = new Date().toLocaleString('tr-TR');
 
+      // 2. Veriyi SheetDB aracılığıyla Google E-Tablo'ya gönder
+      await fetch('https://sheetdb.io/api/v1/be5doarprq3ld', {
+        method: 'POST',
+        headers: {
+          'Accept': 'application/json',
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({
+          data: {
+            Tarih: now,
+            Islem: 'Siteye Giriş',
+            IP: ip,
+            Sehir: city,
+            Bolge: region,
+            Ulke: country
+          }
+        })
+      });
+    } catch (error) {
+      console.error('Kayıt alınamadı:', error);
+    }
+  });
+</script>
 </body>
 </html>
