@@ -1,240 +1,776 @@
 <!DOCTYPE html>
 <html lang="tr" class="scroll-smooth">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Turuncu İletişim | Çorlu Telefon Alım Satım & Teknik Servis</title>
-    <meta name="description" content="Çorlu Kumyol ve Reşadiye şubelerimizde sıfır/ikinci el telefon alım satım, ekran değişimi ve uzman teknik servis hizmeti. En iyi fiyat garantisi!">
-    <script src="https://cdn.tailwindcss.com"></script>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <style>
-        @keyframes scroll {
-            0% { transform: translateX(0); }
-            100% { transform: translateX(-50%); }
-        }
-        .animate-marquee {
-            display: flex;
-            width: max-content;
-            animation: scroll 30s linear infinite;
-        }
-        .marquee-container:hover .animate-marquee {
-            animation-play-state: paused;
-        }
-    </style>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <!-- GELİŞMİŞ BÖLGESEL SEO & ANA HİDEF KELİME GRUPLARI -->
+  <title>TURUNCU CEP | Çorlu Telefon Alım Satım & Teknik Servis & IMEI E-SIM İşlemleri</title>
+  <meta name="description" content="Çorlu telefon alım satım ve 30 dakikada güvenilir teknik servis. Çorlu telefoncu, Çorlu telefon tamiri, ikinci el iPhone ve Samsung alım satım, ekran ve batarya değişimi. Çerkezköy, Kapaklı ve Ergene'den gelenlere özel hizmet.">
+  <meta name="keywords" content="Çorlu telefoncu, Çorlu telefon alım satım, Çorlu telefon tamiri, Çorlu teknik servis, Çorlu ikinci el iPhone, Çorlu iPhone ekran değişimi, Çorlu batarya değişimi, Çorlu anakart tamiri, ikinci el Samsung alım satım, telefon fiyat teklifi, Çerkezköy telefon tamiri, Kapaklı telefoncu, Ergene telefon tamiri, Tekirdağ telefon alım satım, Turuncu İletişim">
+  <meta name="author" content="Turuncu İletişim Çorlu">
+  <meta name="robots" content="index, follow">
+  
+  <meta name="geo.region" content="TR-59">
+  <meta name="geo.placename" content="Çorlu, Tekirdağ">
+  <meta name="geo.position" content="41.1596089;27.8009682">
+  <meta name="ICBM" content="41.1596089, 27.8009682">
+
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800;900&display=swap');
+    body {
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      background-color: #08090d;
+      color: #f3f4f6;
+      overflow-x: hidden;
+    }
+    
+    .glow-orange { box-shadow: 0 0 35px rgba(255, 94, 0, 0.45); }
+    .glow-blue { box-shadow: 0 0 25px rgba(0, 210, 255, 0.25); }
+    .glow-green { box-shadow: 0 0 20px rgba(0, 230, 118, 0.3); }
+    
+    .glass-card {
+      background: rgba(18, 22, 33, 0.75);
+      backdrop-filter: blur(14px);
+      border: 1px solid rgba(255, 255, 255, 0.08);
+    }
+    .glass-card:hover { border-color: rgba(255, 94, 0, 0.4); }
+    .glass-card-blue:hover { border-color: rgba(0, 210, 255, 0.4); }
+
+    .sahibinden-yellow {
+      background-color: #ffe800 !important;
+      color: #000 !important;
+    }
+    .sahibinden-yellow:hover { background-color: #ffd600 !important; }
+
+    *, *::before, *::after { box-sizing: border-box; }
+    html, body { width: 100%; max-width: 100%; }
+    img, iframe, video { max-width: 100%; }
+
+    @media (max-width: 640px) {
+      body { overflow-x: clip; }
+      main { width: 100%; min-width: 0; }
+      h1, h2, h3, h4, h5, p, span, a, label { overflow-wrap: anywhere; }
+      header .max-w-7xl {
+        padding-left: 0.5rem;
+        padding-right: 0.5rem;
+      }
+    }
+
+    @keyframes marquee {
+      0% { transform: translateX(0%); }
+      100% { transform: translateX(-50%); }
+    }
+    .marquee-track {
+      display: flex;
+      width: max-content;
+      animation: marquee 50s linear infinite;
+    }
+    .marquee-container:hover .marquee-track {
+      animation-play-state: paused;
+    }
+
+    .zoom-card {
+      transition: transform 0.4s cubic-bezier(0.165, 0.84, 0.44, 1), box-shadow 0.4s ease, border-color 0.4s ease;
+    }
+    .zoom-card:hover {
+      transform: scale(1.05);
+      z-index: 30;
+    }
+  </style>
+  <script>
+    function sendWhatsAppQuote(event) {
+      event.preventDefault();
+      const brand = document.getElementById('q-brand').value;
+      const model = document.getElementById('q-model').value;
+      const memory = document.getElementById('q-memory').value;
+      const battery = document.getElementById('q-battery').value;
+      const condition = document.getElementById('q-condition').value;
+
+      if (!model.trim()) {
+        alert('Lütfen cihazınızın modelini yazın.');
+        return;
+      }
+
+      const rawText = "Merhaba, cihazım için fiyat teklifi almak istiyorum.\n\n*CİHAZ BİLGİLERİ*\n• MARKA: " + brand + "\n• MODEL: " + model + "\n• HAFIZA: " + memory + "\n• PİL DURUMU: " + battery + "\n• KOZMETİK: " + condition;
+      
+      const whatsappURL = "https://wa.me/905443405959?text=" + encodeURIComponent(rawText);
+      window.open(whatsappURL, '_blank');
+    }
+  </script>
 </head>
-<body class="bg-slate-950 text-slate-100 font-sans antialiased selection:bg-orange-500 selection:text-white">
+<body class="bg-[#08090d] text-gray-100 min-h-screen flex flex-col justify-between antialiased selection:bg-orange-500 selection:text-white pb-20 sm:pb-0">
 
-    <!-- HEADER / NAVBAR -->
-    <header class="sticky top-0 z-50 backdrop-blur-md bg-slate-900/80 border-b border-slate-800">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between">
-            <div class="flex items-center gap-3">
-                <div class="w-10 h-10 rounded-xl bg-gradient-to-tr from-orange-600 to-amber-500 flex items-center justify-center font-black text-xl text-white shadow-lg shadow-orange-500/20">
-                    T
-                </div>
-                <div>
-                    <span class="text-xl font-bold tracking-tight bg-gradient-to-r from-white via-slate-200 to-slate-400 bg-clip-text text-transparent">TURUNCU İLETİŞİM</span>
-                    <span class="block text-xs text-orange-400 font-medium">Çorlu Kumyol & Reşadiye</span>
-                </div>
-            </div>
-            
-            <div class="flex items-center gap-3">
-                <a href="tel:05320000000" class="hidden sm:inline-flex items-center gap-2 px-4 py-2.5 rounded-xl border border-slate-700 bg-slate-800/50 hover:bg-slate-800 text-sm font-semibold transition-all">
-                    <i class="fa-solid fa-phone text-orange-400"></i>
-                    <span>Hemen Ara</span>
-                </a>
-                <a href="https://wa.me/905320000000" target="_blank" class="inline-flex items-center gap-2 px-5 py-2.5 rounded-xl bg-emerald-600 hover:bg-emerald-500 text-white font-semibold text-sm shadow-lg shadow-emerald-600/20 transition-all">
-                    <i class="fa-brands fa-whatsapp text-lg"></i>
-                    <span>WhatsApp</span>
-                </a>
-            </div>
-        </div>
-    </header>
+  <!-- GÖRÜNMEYEN GÜÇLÜ SEO KELİME HAVUZU -->
+  <div class="sr-only">
+    <h1>Çorlu Telefoncu ve Telefon Alım Satım Mağazası</h1>
+    <p>Çorlu telefon tamiri, Çorlu teknik servis, Çorlu ikinci el iPhone ve sıfır cihaz alım satım merkezi. En güvenilir Çorlu telefoncu noktası.</p>
+    <p>Çorlu iPhone ekran değişimi, Çorlu batarya değişimi, Çorlu anakart tamiri, ikinci el Samsung alım satım, telefon fiyat teklifi al hizmetleri.</p>
+    <p>Çerkezköy telefon tamiri, Kapaklı telefoncu, Ergene telefon tamiri, Tekirdağ telefon alım satım ve Trakya genelinde profesyonel cep telefonu çözümleri.</p>
+  </div>
 
-    <!-- WHATSAPP TEKLİF FORMU SEKSİYONU -->
-    <section class="py-16 px-4 max-w-5xl mx-auto">
-        <div class="bg-slate-900/90 border border-slate-800 rounded-3xl p-6 sm:p-10 shadow-2xl relative overflow-hidden backdrop-blur-xl">
-            <div class="text-center max-w-2xl mx-auto mb-8">
-                <h2 class="text-2xl sm:text-3xl font-black tracking-tight text-white uppercase">CİHAZINI DEĞERLENDİR, WHATSAPP'TAN FİYAT AL</h2>
-                <p class="text-slate-400 text-sm mt-2">Mağazamıza gelmeden önce cihaz bilgilerini seç, tek tıkla en doğru teklifi öğren.</p>
-            </div>
+  <!-- TOP BANNER -->
+  <div class="bg-gradient-to-r from-orange-600 via-amber-500 to-orange-600 text-white text-[10px] sm:text-xs font-black py-2 px-3 text-center tracking-wider uppercase shadow-xl flex items-center justify-center flex-wrap gap-2 sm:gap-4">
+    <span><i class="fa-solid fa-bolt mr-1.5 animate-pulse text-yellow-300"></i> TURUNCU İLETİŞİM — TRAKYA BÖLGESİ CEP TELEFONU ALIM SATIM TEKNİK SERVİS</span>
+    <div class="flex items-center space-x-2 shrink-0">
+      <a href="https://www.instagram.com/turuncu.cep/" target="_blank" class="w-6 h-6 bg-black/20 hover:bg-pink-600 rounded-lg flex items-center justify-center text-white text-xs transition">
+        <i class="fa-brands fa-instagram"></i>
+      </a>
+      <a href="https://www.tiktok.com/@turuncu.cep" target="_blank" class="w-6 h-6 bg-black/20 hover:bg-black rounded-lg flex items-center justify-center text-white text-xs transition border border-white/10">
+        <i class="fa-brands fa-tiktok"></i>
+      </a>
+      <a href="https://turuncuiletisim.sahibinden.com/" target="_blank" class="w-6 h-6 sahibinden-yellow rounded-lg flex items-center justify-center text-[10px] font-black transition">
+        S
+      </a>
+    </div>
+  </div>
 
-            <form id="quoteForm" onsubmit="sendWhatsApp(event)" class="grid grid-cols-1 md:grid-cols-2 gap-4">
-                <div>
-                    <label class="block text-xs font-semibold text-slate-300 mb-2">Marka</label>
-                    <select id="brand" class="w-full bg-slate-950 border border-slate-800 rounded-xl px-4 py-3 text-sm focus:border-orange-500 focus:ring-1 focus:ring-orange-500 outline-none transition-all">
-                        <option value="Apple iPhone">Apple iPhone</option>
-                        <option value="Samsung">Samsung</option>
-                        <option value="Xiaomi / Redmi">Xiaomi / Redmi</option>
-                        <option value="Tecno">Tecno</option>
-                        <option value="Diğer Marka">Diğer Marka</option>
-                    </select>
-                </div>
-
-                <div>
-                    <label class="block text-xs font-semibold text-slate-300 mb-2">Model Adı</label>
-                    <input type="text" id="model" placeholder="Örn: iPhone 13 Pro / S23" required class="w-full bg-slate-950 border border-slate-800 rounded-xl px-4 py-3 text-sm focus:border-orange-500 focus:ring-1 focus:ring-orange-500 outline-none transition-all">
-                </div>
-
-                <div>
-                    <label class="block text-xs font-semibold text-slate-300 mb-2">Hafıza Kapasitesi</label>
-                    <select id="storage" class="w-full bg-slate-950 border border-slate-800 rounded-xl px-4 py-3 text-sm focus:border-orange-500 focus:ring-1 focus:ring-orange-500 outline-none transition-all">
-                        <option value="64 GB">64 GB</option>
-                        <option value="128 GB" selected>128 GB</option>
-                        <option value="256 GB">256 GB</option>
-                        <option value="512 GB / 1 TB">512 GB / 1 TB</option>
-                    </select>
-                </div>
-
-                <div>
-                    <label class="block text-xs font-semibold text-slate-300 mb-2">Kozmetik / Parça Durumu</label>
-                    <select id="condition" class="w-full bg-slate-950 border border-slate-800 rounded-xl px-4 py-3 text-sm focus:border-orange-500 focus:ring-1 focus:ring-orange-500 outline-none transition-all">
-                        <option value="Çiziksiz / Noktasız Kusursuz">Çiziksiz / Noktasız Kusursuz</option>
-                        <option value="Kılcal Çizikli (Temiz)">Kılcal Çizikli (Temiz)</option>
-                        <option value="Ekran/Batarya Değişmiş">Ekran/Batarya Değişmiş</option>
-                        <option value="Arka Cam / Kasa Hasarlı">Arka Cam / Kasa Hasarlı</option>
-                    </select>
-                </div>
-
-                <div class="md:col-span-2 mt-4">
-                    <button type="submit" class="w-full bg-emerald-600 hover:bg-emerald-500 text-white font-bold py-4 rounded-xl flex items-center justify-center gap-2 shadow-lg shadow-emerald-600/30 transition-all text-base">
-                        <i class="fa-brands fa-whatsapp text-xl"></i>
-                        <span>WhatsApp ile Hemen Fiyat İsteyin</span>
-                    </button>
-                </div>
-            </form>
-        </div>
-    </section>
-
-    <!-- KAYAN MÜŞTERİ YORUMLARI SEKSİYONU -->
-    <section class="py-16 overflow-hidden bg-slate-950">
-        <div class="max-w-7xl mx-auto px-4 text-center mb-10">
-            <span class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-orange-500/10 border border-orange-500/20 text-orange-400 text-xs font-semibold uppercase tracking-wider mb-3">
-                <i class="fa-solid fa-star"></i> GOOGLE İŞLETME YORUMLARI & REFERANSLAR
+  <!-- HEADER -->
+  <header class="sticky top-0 z-50 bg-[#0c0f17]/95 backdrop-blur-xl border-b border-gray-800/80">
+    <div class="max-w-7xl mx-auto px-3 sm:px-6 lg:px-8 h-20 sm:h-24 flex items-center justify-between">
+      
+      <!-- LOGO -->
+      <div class="flex items-center">
+        <a href="#" class="inline-block hover:opacity-95 transition">
+          <div class="flex flex-col items-start">
+            <span class="text-lg sm:text-3xl font-black text-white tracking-[0.15em] sm:tracking-[0.2em] leading-none uppercase">
+              TURUNCU
             </span>
-            <h2 class="text-2xl sm:text-4xl font-black text-white">ÇORLU VE ÇEVRESİNDEN <span class="text-orange-500">MÜŞTERİ YORUMLARIMIZ</span></h2>
-            <p class="text-slate-400 text-sm mt-2">Kumyol ve Reşadiye şubelerimizde işlem yapan değerli müşterilerimizin gerçek değerlendirmeleri</p>
-        </div>
-
-        <!-- Sonsuz Kayan Marquee Yapısı -->
-        <div class="marquee-container w-full overflow-hidden relative">
-            <div class="animate-marquee flex gap-6">
-                
-                <!-- YORUM KARTLARI (SET 1) -->
-                <div class="w-80 sm:w-96 shrink-0 bg-slate-900 border border-slate-800 p-6 rounded-2xl shadow-xl transition-all duration-300 hover:scale-105 hover:border-orange-500/50 hover:shadow-orange-500/10">
-                    <div class="flex items-center justify-between mb-4">
-                        <div class="text-amber-400 text-sm"><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i></div>
-                        <span class="text-xs text-slate-500 bg-slate-800 px-2 py-1 rounded-md">Google Onaylı</span>
-                    </div>
-                    <p class="text-slate-300 text-sm mb-6">"Çorlu'da telefon alım satım için en dürüst telefoncu. İkinci el iPhone modelimi piyasa değerinin en yükseğinden aldılar, güvenilir teknik servis arayanlara tavsiye ederim."</p>
-                    <div><h4 class="font-bold text-white text-sm">Mert K.</h4><span class="text-xs text-orange-400">Çorlu Merkez</span></div>
-                </div>
-
-                <div class="w-80 sm:w-96 shrink-0 bg-slate-900 border border-slate-800 p-6 rounded-2xl shadow-xl transition-all duration-300 hover:scale-105 hover:border-orange-500/50 hover:shadow-orange-500/10">
-                    <div class="flex items-center justify-between mb-4">
-                        <div class="text-amber-400 text-sm"><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i></div>
-                        <span class="text-xs text-slate-500 bg-slate-800 px-2 py-1 rounded-md">Google Onaylı</span>
-                    </div>
-                    <p class="text-slate-300 text-sm mb-6">"Çerkezköy telefon tamiri için Çorlu'ya Turuncu İletişim'e geldim. iPhone ekran değişimi ve batarya değişimi tam 30 dakikada yapıldı, orijinal parça taktılar."</p>
-                    <div><h4 class="font-bold text-white text-sm">Burak S.</h4><span class="text-xs text-sky-400">Çerkezköy / Tekirdağ</span></div>
-                </div>
-
-                <div class="w-80 sm:w-96 shrink-0 bg-slate-900 border border-slate-800 p-6 rounded-2xl shadow-xl transition-all duration-300 hover:scale-105 hover:border-orange-500/50 hover:shadow-orange-500/10">
-                    <div class="flex items-center justify-between mb-4">
-                        <div class="text-amber-400 text-sm"><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i></div>
-                        <span class="text-xs text-slate-500 bg-slate-800 px-2 py-1 rounded-md">Google Onaylı</span>
-                    </div>
-                    <p class="text-slate-300 text-sm mb-6">"Kapaklı'dan ikinci el Samsung alım satım için tercih ettim. Hem fiyatları çok uygun hem de dükkandaki esnaflık çok samimi. Çorlu telefoncu arayanlar başka yere bakmasın."</p>
-                    <div><h4 class="font-bold text-white text-sm">Zeynep D.</h4><span class="text-xs text-pink-400">Kapaklı / Tekirdağ</span></div>
-                </div>
-
-                <div class="w-80 sm:w-96 shrink-0 bg-slate-900 border border-slate-800 p-6 rounded-2xl shadow-xl transition-all duration-300 hover:scale-105 hover:border-orange-500/50 hover:shadow-orange-500/10">
-                    <div class="flex items-center justify-between mb-4">
-                        <div class="text-amber-400 text-sm"><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i></div>
-                        <span class="text-xs text-slate-500 bg-slate-800 px-2 py-1 rounded-md">Google Onaylı</span>
-                    </div>
-                    <p class="text-slate-300 text-sm mb-6">"Kumyol şubesinde Xiaomi cihazımın şarj soketi tamirini yaptırdım. Aynı gün teslim ettiler. Güler yüzlü ve işinin ehli kadro."</p>
-                    <div><h4 class="font-bold text-white text-sm">Ahmet T.</h4><span class="text-xs text-emerald-400">Çorlu / Kumyol</span></div>
-                </div>
-
-                <div class="w-80 sm:w-96 shrink-0 bg-slate-900 border border-slate-800 p-6 rounded-2xl shadow-xl transition-all duration-300 hover:scale-105 hover:border-orange-500/50 hover:shadow-orange-500/10">
-                    <div class="flex items-center justify-between mb-4">
-                        <div class="text-amber-400 text-sm"><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i></div>
-                        <span class="text-xs text-slate-500 bg-slate-800 px-2 py-1 rounded-md">Google Onaylı</span>
-                    </div>
-                    <p class="text-slate-300 text-sm mb-6">"Ergene'den gelip sıfır iPhone aldık. Eski telefonumdaki tüm verileri ve fotoğrafları eksiksiz aktardılar. Hizmet kalitesi harika."</p>
-                    <div><h4 class="font-bold text-white text-sm">Selin A.</h4><span class="text-xs text-purple-400">Ergene / Tekirdağ</span></div>
-                </div>
-
-                <!-- KESİNTİSİZ DÖNGÜ İÇİN YORUM KARTLARININ KOPYALARI (SET 2) -->
-                <div class="w-80 sm:w-96 shrink-0 bg-slate-900 border border-slate-800 p-6 rounded-2xl shadow-xl transition-all duration-300 hover:scale-105 hover:border-orange-500/50 hover:shadow-orange-500/10">
-                    <div class="flex items-center justify-between mb-4">
-                        <div class="text-amber-400 text-sm"><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i></div>
-                        <span class="text-xs text-slate-500 bg-slate-800 px-2 py-1 rounded-md">Google Onaylı</span>
-                    </div>
-                    <p class="text-slate-300 text-sm mb-6">"Çorlu'da telefon alım satım için en dürüst telefoncu. İkinci el iPhone modelimi piyasa değerinin en yükseğinden aldılar, güvenilir teknik servis arayanlara tavsiye ederim."</p>
-                    <div><h4 class="font-bold text-white text-sm">Mert K.</h4><span class="text-xs text-orange-400">Çorlu Merkez</span></div>
-                </div>
-
-                <div class="w-80 sm:w-96 shrink-0 bg-slate-900 border border-slate-800 p-6 rounded-2xl shadow-xl transition-all duration-300 hover:scale-105 hover:border-orange-500/50 hover:shadow-orange-500/10">
-                    <div class="flex items-center justify-between mb-4">
-                        <div class="text-amber-400 text-sm"><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i></div>
-                        <span class="text-xs text-slate-500 bg-slate-800 px-2 py-1 rounded-md">Google Onaylı</span>
-                    </div>
-                    <p class="text-slate-300 text-sm mb-6">"Çerkezköy telefon tamiri için Çorlu'ya Turuncu İletişim'e geldim. iPhone ekran değişimi ve batarya değişimi tam 30 dakikada yapıldı, orijinal parça taktılar."</p>
-                    <div><h4 class="font-bold text-white text-sm">Burak S.</h4><span class="text-xs text-sky-400">Çerkezköy / Tekirdağ</span></div>
-                </div>
-
-                <div class="w-80 sm:w-96 shrink-0 bg-slate-900 border border-slate-800 p-6 rounded-2xl shadow-xl transition-all duration-300 hover:scale-105 hover:border-orange-500/50 hover:shadow-orange-500/10">
-                    <div class="flex items-center justify-between mb-4">
-                        <div class="text-amber-400 text-sm"><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i></div>
-                        <span class="text-xs text-slate-500 bg-slate-800 px-2 py-1 rounded-md">Google Onaylı</span>
-                    </div>
-                    <p class="text-slate-300 text-sm mb-6">"Kapaklı'dan ikinci el Samsung alım satım için tercih ettim. Hem fiyatları çok uygun hem de dükkandaki esnaflık çok samimi. Çorlu telefoncu arayanlar başka yere bakmasın."</p>
-                    <div><h4 class="font-bold text-white text-sm">Zeynep D.</h4><span class="text-xs text-pink-400">Kapaklı / Tekirdağ</span></div>
-                </div>
-
-                <div class="w-80 sm:w-96 shrink-0 bg-slate-900 border border-slate-800 p-6 rounded-2xl shadow-xl transition-all duration-300 hover:scale-105 hover:border-orange-500/50 hover:shadow-orange-500/10">
-                    <div class="flex items-center justify-between mb-4">
-                        <div class="text-amber-400 text-sm"><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i></div>
-                        <span class="text-xs text-slate-500 bg-slate-800 px-2 py-1 rounded-md">Google Onaylı</span>
-                    </div>
-                    <p class="text-slate-300 text-sm mb-6">"Kumyol şubesinde Xiaomi cihazımın şarj soketi tamirini yaptırdım. Aynı gün teslim ettiler. Güler yüzlü ve işinin ehli kadro."</p>
-                    <div><h4 class="font-bold text-white text-sm">Ahmet T.</h4><span class="text-xs text-emerald-400">Çorlu / Kumyol</span></div>
-                </div>
-
-                <div class="w-80 sm:w-96 shrink-0 bg-slate-900 border border-slate-800 p-6 rounded-2xl shadow-xl transition-all duration-300 hover:scale-105 hover:border-orange-500/50 hover:shadow-orange-500/10">
-                    <div class="flex items-center justify-between mb-4">
-                        <div class="text-amber-400 text-sm"><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i></div>
-                        <span class="text-xs text-slate-500 bg-slate-800 px-2 py-1 rounded-md">Google Onaylı</span>
-                    </div>
-                    <p class="text-slate-300 text-sm mb-6">"Ergene'den gelip sıfır iPhone aldık. Eski telefonumdaki tüm verileri ve fotoğrafları eksiksiz aktardılar. Hizmet kalitesi harika."</p>
-                    <div><h4 class="font-bold text-white text-sm">Selin A.</h4><span class="text-xs text-purple-400">Ergene / Tekirdağ</span></div>
-                </div>
-
+            <div class="flex items-center w-full mt-1.5">
+              <span class="h-[2px] bg-orange-500 flex-grow"></span>
+              <span class="text-[8px] sm:text-[11px] font-extrabold text-orange-400 tracking-[0.3em] uppercase px-1.5 sm:px-2 leading-none">
+                İLETİŞİM
+              </span>
+              <span class="h-[2px] bg-orange-500 flex-grow"></span>
             </div>
+          </div>
+        </a>
+      </div>
+
+      <!-- SAĞ ÜST İLETİŞİM BUTONLARI -->
+      <div class="flex items-center space-x-1.5 sm:space-x-3">
+        <a href="tel:05443405959" class="flex items-center space-x-1 bg-gray-900 hover:bg-orange-600 text-gray-200 hover:text-white px-2 py-2 sm:px-4 sm:py-2.5 rounded-xl text-[11px] sm:text-sm font-bold border border-gray-800 hover:border-orange-500 transition shadow-md">
+          <i class="fa-solid fa-phone text-orange-500 text-xs"></i>
+          <span>Hemen Ara</span>
+        </a>
+        <a href="https://wa.me/905443405959" target="_blank" class="flex items-center space-x-1 bg-gradient-to-r from-emerald-500 to-teal-600 hover:from-emerald-400 hover:to-teal-500 text-white px-2 py-2 sm:px-4 sm:py-2.5 rounded-xl text-[11px] sm:text-sm font-black glow-green transition shadow-md">
+          <i class="fa-brands fa-whatsapp text-xs sm:text-lg"></i>
+          <span>WhatsApp</span>
+        </a>
+      </div>
+    </div>
+  </header>
+
+  <main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mt-6 sm:mt-8 flex-grow space-y-10 sm:space-y-14">
+    
+    <!-- İKİLİ HERO KARTLARI -->
+    <div class="grid grid-cols-1 lg:grid-cols-2 gap-6">
+      
+      <!-- SOL TARAF: SATIŞ & ALIM -->
+      <div class="glass-card rounded-3xl p-6 sm:p-8 flex flex-col justify-between relative overflow-hidden group shadow-2xl">
+        <div class="absolute -top-24 -right-24 w-60 h-60 bg-orange-600/15 rounded-full blur-3xl pointer-events-none"></div>
+        
+        <div class="space-y-4 relative z-10">
+          <div class="inline-flex items-center space-x-2 bg-orange-500/10 border border-orange-500/30 text-orange-400 px-3.5 py-1.5 rounded-full text-[11px] font-black uppercase tracking-wider">
+            <i class="fa-solid fa-store text-orange-500"></i>
+            <span>ÇORLU TELEFONCU & TİCARET MERKEZİ</span>
+          </div>
+          
+          <h1 class="text-2xl sm:text-4xl font-black text-white leading-tight">
+            Çorlu'nun En Güvenilir <br class="hidden sm:inline">
+            <span class="text-transparent bg-clip-text bg-gradient-to-r from-orange-400 via-amber-400 to-yellow-500">Telefon Alım Satım ve İkinci El iPhone & Samsung</span>
+          </h1>
         </div>
+
+        <div class="pt-6 space-y-3 relative z-10">
+          <a href="https://turuncuiletisim.sahibinden.com/" target="_blank" class="w-full sahibinden-yellow font-black py-3.5 px-4 rounded-2xl text-xs sm:text-sm flex items-center justify-center space-x-2 shadow-xl transition transform group-hover:scale-[1.01]">
+            <i class="fa-solid fa-arrow-up-right-from-square"></i>
+            <span>Sahibinden Kurumsal Mağazamıza Git</span>
+          </a>
+
+          <div class="grid grid-cols-2 gap-2 sm:gap-3">
+            <a href="https://wa.me/905443405959?text=Merhaba,%20cihazımı%20satmak%20istiyorum." target="_blank" class="bg-gradient-to-r from-emerald-600 to-teal-600 hover:from-emerald-500 hover:to-teal-500 text-white font-black py-3 px-3 rounded-xl text-xs flex items-center justify-center space-x-1.5 shadow-lg transition">
+              <i class="fa-brands fa-whatsapp text-sm"></i>
+              <span>WhatsApp Teklif</span>
+            </a>
+            <a href="tel:05443405959" class="bg-gradient-to-r from-orange-500 to-amber-600 hover:from-orange-400 hover:to-amber-500 text-white font-black py-3 px-3 rounded-xl text-xs flex items-center justify-center space-x-1.5 glow-orange transition">
+              <i class="fa-solid fa-phone text-xs"></i>
+              <span>Hemen Ara</span>
+            </a>
+          </div>
+        </div>
+      </div>
+
+      <!-- SAĞ TARAF: TEKNİK SERVİS -->
+      <div class="glass-card glass-card-blue rounded-3xl p-6 sm:p-8 flex flex-col justify-between relative overflow-hidden group shadow-2xl">
+        <div class="absolute -top-24 -right-24 w-60 h-60 bg-blue-600/15 rounded-full blur-3xl pointer-events-none"></div>
+
+        <div class="space-y-4 relative z-10">
+          <div class="inline-flex items-center space-x-2 bg-blue-500/10 border border-blue-500/30 text-blue-400 px-3.5 py-1.5 rounded-full text-[11px] font-black uppercase tracking-wider">
+            <i class="fa-solid fa-wrench text-blue-400"></i>
+            <span>ÇORLU TEKNİK SERVİS — 30 DAKİKADA TESLİM</span>
+          </div>
+          
+          <h2 class="text-2xl sm:text-4xl font-black text-white leading-tight">
+            Uzman Kadro ile <br class="hidden sm:inline">
+            <span class="text-transparent bg-clip-text bg-gradient-to-r from-blue-400 via-cyan-400 to-teal-300">Çorlu Telefon Tamiri & Ekran Değişimi</span>
+          </h2>
+
+          <div class="grid grid-cols-2 gap-2 pt-1 text-[11px] font-bold text-gray-300">
+            <div class="flex items-center space-x-2 bg-gray-900/90 p-2.5 rounded-xl border border-gray-800/80">
+              <i class="fa-solid fa-mobile-screen text-orange-400"></i>
+              <span>iPhone Ekran Değişimi</span>
+            </div>
+            <div class="flex items-center space-x-2 bg-gray-900/90 p-2.5 rounded-xl border border-gray-800/80">
+              <i class="fa-solid fa-battery-full text-emerald-400"></i>
+              <span>Batarya Değişimi</span>
+            </div>
+            <div class="flex items-center space-x-2 bg-gray-900/90 p-2.5 rounded-xl border border-gray-800/80">
+              <i class="fa-solid fa-microchip text-blue-400"></i>
+              <span>Anakart Tamiri</span>
+            </div>
+            <div class="flex items-center space-x-2 bg-gray-900/90 p-2.5 rounded-xl border border-gray-800/80">
+              <i class="fa-solid fa-calculator text-purple-400"></i>
+              <span>Hızlı Fiyat Teklifi</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="pt-6 grid grid-cols-2 gap-2 sm:gap-3 relative z-10">
+          <a href="https://wa.me/905423323696?text=Merhaba,%20teknik%20servis%20için%20fiyat%20almak%20istiyorum." target="_blank" class="bg-gradient-to-r from-emerald-600 to-teal-600 hover:from-emerald-500 hover:to-teal-500 text-white font-black py-3 px-3 rounded-xl text-xs flex items-center justify-center space-x-1.5 shadow-lg transition">
+            <i class="fa-brands fa-whatsapp text-sm"></i>
+            <span>WhatsApp Destek</span>
+          </a>
+          <a href="tel:05423323696" class="bg-gradient-to-r from-blue-600 to-cyan-600 hover:from-blue-500 hover:to-cyan-500 text-white font-black py-3 px-3 rounded-xl text-xs flex items-center justify-center space-x-1.5 glow-blue transition">
+            <i class="fa-solid fa-phone text-xs"></i>
+            <span>Hemen Ara</span>
+          </a>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- WHATSAPP ENTEGRELİ CİHAZ TEKLİF SİHİRBAZI -->
+    <section class="glass-card rounded-3xl p-6 sm:p-8 border border-orange-500/30 relative overflow-hidden shadow-2xl">
+      <div class="absolute -bottom-20 -left-20 w-60 h-60 bg-emerald-600/10 rounded-full blur-3xl pointer-events-none"></div>
+      
+      <div class="max-w-3xl mx-auto space-y-6 relative z-10">
+        <div class="text-center space-y-2">
+          <span class="bg-emerald-500/10 border border-emerald-500/30 text-emerald-400 px-3.5 py-1.5 rounded-full text-[11px] font-black uppercase tracking-wider inline-block">
+            <i class="fa-solid fa-calculator mr-1.5"></i> HIZLI FİYAT TEKLİF SİHİRBAZI
+          </span>
+          <h3 class="text-2xl sm:text-3xl font-black text-white uppercase tracking-wide">
+            CİHAZINI DEĞERLENDİR, <span class="text-emerald-400">WHATSAPP'TAN ANINDA FİYAT AL</span>
+          </h3>
+          <p class="text-xs sm:text-sm text-gray-400">
+            Mağazamıza gelmeden önce cihaz bilgilerini seç, tek tıkla en doğru teklifi öğren.
+          </p>
+        </div>
+
+        <form onsubmit="sendWhatsAppQuote(event)" class="space-y-4 pt-2">
+          <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
+            
+            <div class="space-y-1.5">
+              <label class="text-xs font-bold text-gray-300">Marka</label>
+              <select id="q-brand" class="w-full bg-[#141722] border border-gray-800 text-white rounded-xl px-3 py-2.5 text-xs font-semibold focus:border-orange-500 outline-none">
+                <option value="Apple iPhone">Apple iPhone</option>
+                <option value="Samsung">Samsung</option>
+                <option value="Xiaomi / Redmi">Xiaomi / Redmi</option>
+                <option value="Tecno">Tecno</option>
+                <option value="Diğer">Diğer Marka</option>
+              </select>
+            </div>
+
+            <div class="space-y-1.5">
+              <label class="text-xs font-bold text-gray-300">Model Adı</label>
+              <input type="text" id="q-model" placeholder="Örn: iPhone 13 Pro / S23" required class="w-full bg-[#141722] border border-gray-800 text-white rounded-xl px-3 py-2.5 text-xs font-semibold focus:border-orange-500 outline-none">
+            </div>
+
+            <div class="space-y-1.5">
+              <label class="text-xs font-bold text-gray-300">Hafıza Kapasitesi</label>
+              <select id="q-memory" class="w-full bg-[#141722] border border-gray-800 text-white rounded-xl px-3 py-2.5 text-xs font-semibold focus:border-orange-500 outline-none">
+                <option value="64 GB">64 GB</option>
+                <option value="128 GB" selected>128 GB</option>
+                <option value="256 GB">256 GB</option>
+                <option value="512 GB ve Üstü">512 GB ve Üstü</option>
+              </select>
+            </div>
+
+            <div class="space-y-1.5">
+              <label class="text-xs font-bold text-gray-300">Pil Sağlığı / Durumu</label>
+              <select id="q-battery" class="w-full bg-[#141722] border border-gray-800 text-white rounded-xl px-3 py-2.5 text-xs font-semibold focus:border-orange-500 outline-none">
+                <option value="%90 ve Üstü">Mükemmel (%90 ve Üstü)</option>
+                <option value="%80 - %89 Arası" selected>İyi (%80 - %89)</option>
+                <option value="%80 Altı / Servis Uyarı">%80 Altı / Servis Uyarı</option>
+                <option value="Bilmiyorum">Bilmiyorum</option>
+              </select>
+            </div>
+
+            <div class="space-y-1.5 sm:col-span-2 lg:col-span-2">
+              <label class="text-xs font-bold text-gray-300">Kozmetik / Parça Durumu</label>
+              <select id="q-condition" class="w-full bg-[#141722] border border-gray-800 text-white rounded-xl px-3 py-2.5 text-xs font-semibold focus:border-orange-500 outline-none">
+                <option value="Çiziksiz / Noktasız Kusursuz">Çiziksiz / Noktasız Kusursuz</option>
+                <option value="Kılcal hafif çizikler var - Temiz">Kılcal hafif çizikler var - Temiz</option>
+                <option value="Kasa veya ekranda ezik / çizik var">Kasa veya ekranda ezik / çizik var</option>
+                <option value="Parça değişenli veya arızalı">Parça değişenli veya arızalı</option>
+              </select>
+            </div>
+
+          </div>
+
+          <div class="pt-3">
+            <button type="submit" class="w-full bg-gradient-to-r from-emerald-600 via-teal-600 to-emerald-600 hover:from-emerald-500 hover:to-teal-500 text-white font-black py-4 px-6 rounded-2xl text-sm flex items-center justify-center space-x-2 glow-green shadow-xl transition transform hover:scale-[1.01]">
+              <i class="fa-brands fa-whatsapp text-xl"></i>
+              <span>WhatsApp ile Hemen Fiyat İste</span>
+            </button>
+          </div>
+        </form>
+      </div>
     </section>
 
-    <!-- JAVASCRIPT KODLARI -->
-    <script>
-        function sendWhatsApp(event) {
-            event.preventDefault();
-            const brand = document.getElementById('brand').value;
-            const model = document.getElementById('model').value;
-            const storage = document.getElementById('storage').value;
-            const condition = document.getElementById('condition').value;
+    <!-- VİTRİNİMİZ -->
+    <section class="overflow-hidden py-8">
+      <div class="text-center mb-8">
+        <span class="bg-orange-500/10 border border-orange-500/30 text-orange-400 px-3.5 py-1.5 rounded-full text-[11px] font-black uppercase tracking-wider inline-block">
+          <i class="fa-solid fa-camera mr-1.5"></i> MAĞAZAMIZDAN CANLI KARELER
+        </span>
+        <h3 class="text-2xl sm:text-3xl font-black text-white uppercase tracking-wider mt-2">
+          <span class="text-orange-500">VİTRİNİMİZ</span>
+        </h3>
+      </div>
 
-            const message = `Merhaba Turuncu İletişim, cihazım için fiyat teklifi almak istiyorum:\n\n` +
-                            `• Marka: ${brand}\n` +
-                            `• Model: ${model}\n` +
-                            `• Hafıza: ${storage}\n` +
-                            `• Durum: ${condition}\n\n` +
-                            `En kısa sürede fiyat teklifinizi bekliyorum.`;
+      <div class="marquee-container w-full overflow-visible relative py-6">
+        <div class="absolute left-0 top-0 bottom-0 w-16 bg-gradient-to-r from-[#08090d] to-transparent z-20 pointer-events-none"></div>
+        <div class="absolute right-0 top-0 bottom-0 w-16 bg-gradient-to-l from-[#08090d] to-transparent z-20 pointer-events-none"></div>
 
-            const encodedMessage = encodeURIComponent(message);
-            const whatsappUrl = `https://wa.me/905320000000?text=${encodedMessage}`;
-            window.open(whatsappUrl, '_blank');
-        }
-    </script>
+        <div class="marquee-track space-x-6 py-4">
+          <script>
+            for (let i = 1; i <= 35; i++) {
+              document.write(`
+                <div class="w-72 sm:w-80 h-96 sm:h-[420px] glass-card rounded-2xl overflow-hidden shrink-0 zoom-card hover:border-orange-500 hover:glow-orange shadow-2xl cursor-pointer">
+                  <img src="gorsel${i}.jpeg" alt="Ürün ${i}" class="w-full h-full object-cover" onerror="this.onerror=null; this.src='gorsel${i}.jpg';">
+                </div>
+              `);
+            }
+          </script>
+        </div>
+      </div>
+    </section>
+
+    <!-- GOOGLE MÜŞTERİ YORUMLARI & REFERANSLAR -->
+    <section class="pt-2 overflow-hidden">
+      <div class="text-center mb-6">
+        <span class="bg-amber-500/10 border border-amber-500/30 text-amber-400 px-3.5 py-1.5 rounded-full text-[11px] font-black uppercase tracking-wider inline-block">
+          <i class="fa-solid fa-star text-yellow-400 mr-1.5"></i> GOOGLE İŞLETME YORUMLARI & REFERANSLAR
+        </span>
+        <h3 class="text-xl sm:text-3xl font-black text-white uppercase tracking-wider mt-2">
+          <span class="text-orange-500">MÜŞTERİ YORUMLARIMIZ</span>
+        </h3>
+        <p class="text-xs text-gray-400 mt-1">Kumyol ve Reşadiye şubelerimizde işlem yapan değerli müşterilerimizin gerçek değerlendirmeleri</p>
+      </div>
+
+      <div class="marquee-container w-full overflow-visible relative py-6">
+        <div class="absolute left-0 top-0 bottom-0 w-16 bg-gradient-to-r from-[#08090d] to-transparent z-20 pointer-events-none"></div>
+        <div class="absolute right-0 top-0 bottom-0 w-16 bg-gradient-to-l from-[#08090d] to-transparent z-20 pointer-events-none"></div>
+
+        <div class="marquee-track space-x-6 py-4">
+          
+          <!-- YORUM KARTLARI SETİ -->
+          <div class="w-80 sm:w-96 shrink-0 glass-card rounded-2xl p-6 flex flex-col justify-between space-y-4 zoom-card shadow-2xl">
+            <div class="space-y-3">
+              <div class="flex items-center justify-between">
+                <div class="text-yellow-400 text-xs space-x-0.5">
+                  <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i>
+                </div>
+                <span class="text-[10px] text-gray-500 font-bold bg-gray-900 px-2 py-1 rounded-lg">Google Onaylı</span>
+              </div>
+              <p class="text-xs text-gray-300 leading-relaxed italic">
+                "Çorlu'da telefon alım satım için en dürüst telefoncu. İkinci el iPhone modelimi piyasa değerinin en yükseğinden aldılar, güvenilir teknik servis arayanlara tavsiye ederim."
+              </p>
+            </div>
+            <div class="pt-3 border-t border-gray-800 flex items-center justify-between">
+              <div>
+                <h5 class="text-xs font-black text-white">Mert K.</h5>
+                <span class="text-[10px] text-orange-400 font-bold">Çorlu Merkez</span>
+              </div>
+              <i class="fa-solid fa-quote-right text-gray-700 text-lg"></i>
+            </div>
+          </div>
+
+          <div class="w-80 sm:w-96 shrink-0 glass-card rounded-2xl p-6 flex flex-col justify-between space-y-4 zoom-card shadow-2xl">
+            <div class="space-y-3">
+              <div class="flex items-center justify-between">
+                <div class="text-yellow-400 text-xs space-x-0.5">
+                  <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i>
+                </div>
+                <span class="text-[10px] text-gray-500 font-bold bg-gray-900 px-2 py-1 rounded-lg">Google Onaylı</span>
+              </div>
+              <p class="text-xs text-gray-300 leading-relaxed italic">
+                "Çerkezköy telefon tamiri için Çorlu'ya Turuncu İletişim'e geldim. iPhone ekran değişimi ve batarya değişimi tam 30 dakikada yapıldı, orijinal parça taktılar."
+              </p>
+            </div>
+            <div class="pt-3 border-t border-gray-800 flex items-center justify-between">
+              <div>
+                <h5 class="text-xs font-black text-white">Burak S.</h5>
+                <span class="text-[10px] text-blue-400 font-bold">Çerkezköy / Tekirdağ</span>
+              </div>
+              <i class="fa-solid fa-quote-right text-gray-700 text-lg"></i>
+            </div>
+          </div>
+
+          <div class="w-80 sm:w-96 shrink-0 glass-card rounded-2xl p-6 flex flex-col justify-between space-y-4 zoom-card shadow-2xl">
+            <div class="space-y-3">
+              <div class="flex items-center justify-between">
+                <div class="text-yellow-400 text-xs space-x-0.5">
+                  <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i>
+                </div>
+                <span class="text-[10px] text-gray-500 font-bold bg-gray-900 px-2 py-1 rounded-lg">Google Onaylı</span>
+              </div>
+              <p class="text-xs text-gray-300 leading-relaxed italic">
+                "Kapaklı'dan ikinci el Samsung alım satım için tercih ettim. Hem fiyatları çok uygun hem de dükkandaki esnaflık çok samimi. Çorlu telefoncu arayanlar başka yere bakmasın."
+              </p>
+            </div>
+            <div class="pt-3 border-t border-gray-800 flex items-center justify-between">
+              <div>
+                <h5 class="text-xs font-black text-white">Zeynep D.</h5>
+                <span class="text-[10px] text-pink-400 font-bold">Kapaklı / Tekirdağ</span>
+              </div>
+              <i class="fa-solid fa-quote-right text-gray-700 text-lg"></i>
+            </div>
+          </div>
+
+          <div class="w-80 sm:w-96 shrink-0 glass-card rounded-2xl p-6 flex flex-col justify-between space-y-4 zoom-card shadow-2xl">
+            <div class="space-y-3">
+              <div class="flex items-center justify-between">
+                <div class="text-yellow-400 text-xs space-x-0.5">
+                  <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i>
+                </div>
+                <span class="text-[10px] text-gray-500 font-bold bg-gray-900 px-2 py-1 rounded-lg">Google Onaylı</span>
+              </div>
+              <p class="text-xs text-gray-300 leading-relaxed italic">
+                "Kumyol şubesinde Xiaomi cihazımın şarj soketi tamirini yaptırdım. Aynı gün teslim ettiler. Güler yüzlü ve işinin ehli kadro."
+              </p>
+            </div>
+            <div class="pt-3 border-t border-gray-800 flex items-center justify-between">
+              <div>
+                <h5 class="text-xs font-black text-white">Ahmet T.</h5>
+                <span class="text-[10px] text-emerald-400 font-bold">Çorlu / Kumyol</span>
+              </div>
+              <i class="fa-solid fa-quote-right text-gray-700 text-lg"></i>
+            </div>
+          </div>
+
+          <div class="w-80 sm:w-96 shrink-0 glass-card rounded-2xl p-6 flex flex-col justify-between space-y-4 zoom-card shadow-2xl">
+            <div class="space-y-3">
+              <div class="flex items-center justify-between">
+                <div class="text-yellow-400 text-xs space-x-0.5">
+                  <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i>
+                </div>
+                <span class="text-[10px] text-gray-500 font-bold bg-gray-900 px-2 py-1 rounded-lg">Google Onaylı</span>
+              </div>
+              <p class="text-xs text-gray-300 leading-relaxed italic">
+                "Ergene'den gelip sıfır iPhone aldık. Eski telefonumdaki tüm verileri ve fotoğrafları eksiksiz aktardılar. Hizmet kalitesi harika."
+              </p>
+            </div>
+            <div class="pt-3 border-t border-gray-800 flex items-center justify-between">
+              <div>
+                <h5 class="text-xs font-black text-white">Selin A.</h5>
+                <span class="text-[10px] text-purple-400 font-bold">Ergene / Tekirdağ</span>
+              </div>
+              <i class="fa-solid fa-quote-right text-gray-700 text-lg"></i>
+            </div>
+          </div>
+
+          <!-- KESİNTİSİZ DÖNGÜ İÇİN KOPYA SET -->
+          <div class="w-80 sm:w-96 shrink-0 glass-card rounded-2xl p-6 flex flex-col justify-between space-y-4 zoom-card shadow-2xl">
+            <div class="space-y-3">
+              <div class="flex items-center justify-between">
+                <div class="text-yellow-400 text-xs space-x-0.5">
+                  <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i>
+                </div>
+                <span class="text-[10px] text-gray-500 font-bold bg-gray-900 px-2 py-1 rounded-lg">Google Onaylı</span>
+              </div>
+              <p class="text-xs text-gray-300 leading-relaxed italic">
+                "Çorlu'da telefon alım satım için en dürüst telefoncu. İkinci el iPhone modelimi piyasa değerinin en yükseğinden aldılar, güvenilir teknik servis arayanlara tavsiye ederim."
+              </p>
+            </div>
+            <div class="pt-3 border-t border-gray-800 flex items-center justify-between">
+              <div>
+                <h5 class="text-xs font-black text-white">Mert K.</h5>
+                <span class="text-[10px] text-orange-400 font-bold">Çorlu Merkez</span>
+              </div>
+              <i class="fa-solid fa-quote-right text-gray-700 text-lg"></i>
+            </div>
+          </div>
+
+          <div class="w-80 sm:w-96 shrink-0 glass-card rounded-2xl p-6 flex flex-col justify-between space-y-4 zoom-card shadow-2xl">
+            <div class="space-y-3">
+              <div class="flex items-center justify-between">
+                <div class="text-yellow-400 text-xs space-x-0.5">
+                  <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i>
+                </div>
+                <span class="text-[10px] text-gray-500 font-bold bg-gray-900 px-2 py-1 rounded-lg">Google Onaylı</span>
+              </div>
+              <p class="text-xs text-gray-300 leading-relaxed italic">
+                "Çerkezköy telefon tamiri için Çorlu'ya Turuncu İletişim'e geldim. iPhone ekran değişimi ve batarya değişimi tam 30 dakikada yapıldı, orijinal parça taktılar."
+              </p>
+            </div>
+            <div class="pt-3 border-t border-gray-800 flex items-center justify-between">
+              <div>
+                <h5 class="text-xs font-black text-white">Burak S.</h5>
+                <span class="text-[10px] text-blue-400 font-bold">Çerkezköy / Tekirdağ</span>
+              </div>
+              <i class="fa-solid fa-quote-right text-gray-700 text-lg"></i>
+            </div>
+          </div>
+
+          <div class="w-80 sm:w-96 shrink-0 glass-card rounded-2xl p-6 flex flex-col justify-between space-y-4 zoom-card shadow-2xl">
+            <div class="space-y-3">
+              <div class="flex items-center justify-between">
+                <div class="text-yellow-400 text-xs space-x-0.5">
+                  <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i>
+                </div>
+                <span class="text-[10px] text-gray-500 font-bold bg-gray-900 px-2 py-1 rounded-lg">Google Onaylı</span>
+              </div>
+              <p class="text-xs text-gray-300 leading-relaxed italic">
+                "Kapaklı'dan ikinci el Samsung alım satım için tercih ettim. Hem fiyatları çok uygun hem de dükkandaki esnaflık çok samimi. Çorlu telefoncu arayanlar başka yere bakmasın."
+              </p>
+            </div>
+            <div class="pt-3 border-t border-gray-800 flex items-center justify-between">
+              <div>
+                <h5 class="text-xs font-black text-white">Zeynep D.</h5>
+                <span class="text-[10px] text-pink-400 font-bold">Kapaklı / Tekirdağ</span>
+              </div>
+              <i class="fa-solid fa-quote-right text-gray-700 text-lg"></i>
+            </div>
+          </div>
+
+          <div class="w-80 sm:w-96 shrink-0 glass-card rounded-2xl p-6 flex flex-col justify-between space-y-4 zoom-card shadow-2xl">
+            <div class="space-y-3">
+              <div class="flex items-center justify-between">
+                <div class="text-yellow-400 text-xs space-x-0.5">
+                  <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i>
+                </div>
+                <span class="text-[10px] text-gray-500 font-bold bg-gray-900 px-2 py-1 rounded-lg">Google Onaylı</span>
+              </div>
+              <p class="text-xs text-gray-300 leading-relaxed italic">
+                "Kumyol şubesinde Xiaomi cihazımın şarj soketi tamirini yaptırdım. Aynı gün teslim ettiler. Güler yüzlü ve işinin ehli kadro."
+              </p>
+            </div>
+            <div class="pt-3 border-t border-gray-800 flex items-center justify-between">
+              <div>
+                <h5 class="text-xs font-black text-white">Ahmet T.</h5>
+                <span class="text-[10px] text-emerald-400 font-bold">Çorlu / Kumyol</span>
+              </div>
+              <i class="fa-solid fa-quote-right text-gray-700 text-lg"></i>
+            </div>
+          </div>
+
+          <div class="w-80 sm:w-96 shrink-0 glass-card rounded-2xl p-6 flex flex-col justify-between space-y-4 zoom-card shadow-2xl">
+            <div class="space-y-3">
+              <div class="flex items-center justify-between">
+                <div class="text-yellow-400 text-xs space-x-0.5">
+                  <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i>
+                </div>
+                <span class="text-[10px] text-gray-500 font-bold bg-gray-900 px-2 py-1 rounded-lg">Google Onaylı</span>
+              </div>
+              <p class="text-xs text-gray-300 leading-relaxed italic">
+                "Ergene'den gelip sıfır iPhone aldık. Eski telefonumdaki tüm verileri ve fotoğrafları eksiksiz aktardılar. Hizmet kalitesi harika."
+              </p>
+            </div>
+            <div class="pt-3 border-t border-gray-800 flex items-center justify-between">
+              <div>
+                <h5 class="text-xs font-black text-white">Selin A.</h5>
+                <span class="text-[10px] text-purple-400 font-bold">Ergene / Tekirdağ</span>
+              </div>
+              <i class="fa-solid fa-quote-right text-gray-700 text-lg"></i>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- TRAKYA TELEFON REHBERİ & BİLGİ BANKASI -->
+    <section class="pt-4">
+      <div class="text-center mb-8 space-y-2">
+        <span class="inline-flex items-center space-x-2 bg-orange-500/10 border border-orange-500/30 text-orange-400 px-3.5 py-1.5 rounded-full text-[11px] font-black uppercase tracking-wider">
+          <i class="fa-solid fa-book-open text-orange-500"></i>
+          <span>TRAKYA TELEFON REHBERİ & BİLGİ BANKASI</span>
+        </span>
+        <h3 class="text-2xl sm:text-4xl font-black text-white uppercase tracking-wide">
+          ÇORLU VE BÖLGE İLLERDE <span class="text-transparent bg-clip-text bg-gradient-to-r from-orange-400 via-amber-400 to-yellow-500">PROFESYONEL TELEFON HİZMETLERİ</span>
+        </h3>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+        
+        <div class="glass-card rounded-3xl p-6 sm:p-7 flex flex-col justify-between space-y-4 shadow-2xl relative overflow-hidden group">
+          <div class="space-y-3">
+            <div class="inline-flex items-center space-x-2 bg-orange-500/10 border border-orange-500/30 text-orange-400 px-3 py-1 rounded-full text-[10px] font-black uppercase">
+              <i class="fa-solid fa-store"></i>
+              <span>Çorlu Telefon Alım Satım</span>
+            </div>
+            <h4 class="text-lg sm:text-xl font-black text-white leading-snug">
+              İkinci El iPhone ve Samsung Alım Satım Noktası
+            </h4>
+            <p class="text-xs sm:text-sm text-gray-300 leading-relaxed">
+              Çorlu telefon alım satım ve ikinci el iPhone & Samsung kategorisinde en geniş cihaz seçeneğini sunuyoruz. Tekirdağ telefon alım satım pazarında en yüksek fiyat garantisi ve güvenilir ekspertiz hizmetiyle çalışıyoruz.
+            </p>
+          </div>
+          <div class="pt-4 border-t border-gray-800 flex items-center justify-between text-[11px] font-bold">
+            <span class="text-gray-400">Turuncu İletişim Kurumsal</span>
+            <span class="text-orange-400">Çorlu / Tekirdağ</span>
+          </div>
+        </div>
+
+        <div class="glass-card glass-card-blue rounded-3xl p-6 sm:p-7 flex flex-col justify-between space-y-4 shadow-2xl relative overflow-hidden group">
+          <div class="space-y-3">
+            <div class="inline-flex items-center space-x-2 bg-blue-500/10 border border-blue-500/30 text-blue-400 px-3 py-1 rounded-full text-[10px] font-black uppercase">
+              <i class="fa-solid fa-wrench"></i>
+              <span>Çorlu Teknik Servis</span>
+            </div>
+            <h4 class="text-lg sm:text-xl font-black text-white leading-snug">
+              Çorlu Telefon Tamiri, Ekran ve Batarya Değişimi
+            </h4>
+            <p class="text-xs sm:text-sm text-gray-300 leading-relaxed">
+              Çorlu telefon tamiri alanında uzman teknisyenlerimizle Çorlu iPhone ekran değişimi, batarya değişimi ve anakart tamiri işlemlerini 30 dakikada çözüyoruz. Çerkezköy telefon tamiri ve Ergene telefon tamiri için gelenlere özel ayrıcalıklar tanıyoruz.
+            </p>
+          </div>
+          <div class="pt-4 border-t border-gray-800 flex items-center justify-between text-[11px] font-bold">
+            <span class="text-gray-400">VIP Teknik Servis</span>
+            <span class="text-blue-400">Aynı Gün Teslimat</span>
+          </div>
+        </div>
+
+        <div class="glass-card rounded-3xl p-6 sm:p-7 flex flex-col justify-between space-y-4 shadow-2xl relative overflow-hidden group">
+          <div class="space-y-3">
+            <div class="inline-flex items-center space-x-2 bg-emerald-500/10 border border-emerald-500/30 text-emerald-400 px-3 py-1 rounded-full text-[10px] font-black uppercase">
+              <i class="fa-solid fa-shield-halved"></i>
+              <span>Çorlu Telefoncu Güvencesi</span>
+            </div>
+            <h4 class="text-lg sm:text-xl font-black text-white leading-snug">
+              Kapaklı Telefoncu ve Bölgesel Çözüm Merkezi
+            </h4>
+            <p class="text-xs sm:text-sm text-gray-300 leading-relaxed">
+              En yakın Çorlu telefoncu arayışınızda Kumyol ve Reşadiye caddelerindeki mağazalarımızla hizmetinizdeyiz. Kapaklı telefoncu ve çevre ilçelerden gelen tüm müşterilerimize şeffaf fiyat politikası sunuyoruz.
+            </p>
+          </div>
+          <div class="pt-4 border-t border-gray-800 flex items-center justify-between text-[11px] font-bold">
+            <span class="text-gray-400">Sahibinden Kurumsal</span>
+            <span class="text-emerald-400">Güvenli Alışveriş</span>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- HARİTALAR VE İLETİŞİM BİLGİLERİ -->
+    <section class="pt-4 pb-10">
+      <div class="text-center mb-6">
+        <h3 class="text-xl sm:text-3xl font-black text-white uppercase tracking-wider">
+          <span class="text-transparent bg-clip-text bg-gradient-to-r from-orange-400 via-amber-400 to-orange-500">MAĞAZALARIMIZ</span>
+        </h3>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+        
+        <!-- BELEDİYE YANI ŞUBESİ -->
+        <div class="glass-card rounded-2xl p-5 flex flex-col justify-between space-y-4">
+          <div class="space-y-3">
+            <div class="flex items-center space-x-3">
+              <div class="w-10 h-10 bg-orange-500/10 border border-orange-500/30 rounded-xl flex items-center justify-center text-orange-500 font-bold">
+                <i class="fa-solid fa-location-dot"></i>
+              </div>
+              <div>
+                <h4 class="text-base font-black text-white uppercase">BELEDİYE YANI ŞUBESİ</h4>
+                <span class="text-xs text-orange-400 font-bold">Çorlu Telefoncu & Teknik Servis</span>
+              </div>
+            </div>
+
+            <div class="w-full h-44 rounded-xl overflow-hidden border border-gray-800 shadow-2xl">
+              <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3009.45892837315!2d27.8005817!3d41.1597913!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x14b4e776d7836cc3%3A0x40f203de69cc9d68!2sTuruncu%20%C4%B0leti%C5%9Fim%20%C3%87orlu%20Cep%20Telefonu%20%26%20Aksesuar%20Lensun%20Bayi!5e0!3m2!1str!2str!4v1710000000000!5m2!1str!2str" width="100%" height="100%" style="border:0; filter: grayscale(80%) invert(90%) contrast(120%);" allowfullscreen="" loading="lazy"></iframe>
+            </div>
+
+            <div class="text-xs text-gray-300 space-y-1.5 pt-1 font-semibold">
+              <p><i class="fa-solid fa-clock text-orange-500 mr-2"></i>Pzt - Cmt: 09:00 - 21:00</p>
+              <p><i class="fa-solid fa-phone text-orange-500 mr-2"></i>0544 340 59 59</p>
+            </div>
+          </div>
+
+          <a href="https://www.google.com/maps/place/Turuncu+%C4%B0leti%C5%9Fim+%C3%87orlu+Cep+Telefonu+%26+Aksesuar+Lensun+Bayi/@41.1597913,27.8005817,18.75z" target="_blank" class="w-full bg-gray-900 hover:bg-orange-500 text-white font-black py-3 px-4 rounded-xl text-xs flex items-center justify-center space-x-2 transition border border-gray-800 hover:border-orange-500">
+            <i class="fa-solid fa-map-location-dot"></i>
+            <span>Google Haritalar'da Yol Tarifi Al</span>
+          </a>
+        </div>
+
+        <!-- TÜRBE YANI ŞUBESİ -->
+        <div class="glass-card rounded-2xl p-5 flex flex-col justify-between space-y-4">
+          <div class="space-y-3">
+            <div class="flex items-center space-x-3">
+              <div class="w-10 h-10 bg-orange-500/10 border border-orange-500/30 rounded-xl flex items-center justify-center text-orange-500 font-bold">
+                <i class="fa-solid fa-store"></i>
+              </div>
+              <div>
+                <h4 class="text-base font-black text-white uppercase">TÜRBE YANI ŞUBESİ</h4>
+                <span class="text-xs text-orange-400 font-bold">Çorlu Telefon Alım Satım & Servis</span>
+              </div>
+            </div>
+
+            <div class="w-full h-44 rounded-xl overflow-hidden border border-gray-800 shadow-2xl">
+              <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3009.45892837315!2d27.7994459!3d41.1582994!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x14b4e7dfabaacf95%3A0xef4b6f797d899423!2sTuruncu%20%C4%B0letişim%20Cep%20Telefonu%20Teknik%20Servis!5e0!3m2!1str!2str!4v1710000000000!5m2!1str!2str" width="100%" height="100%" style="border:0; filter: grayscale(80%) invert(90%) contrast(120%);" allowfullscreen="" loading="lazy"></iframe>
+            </div>
+
+            <div class="text-xs text-gray-300 space-y-1.5 pt-1 font-semibold">
+              <p><i class="fa-solid fa-clock text-orange-500 mr-2"></i>Pzt - Cmt: 09:00 - 21:00</p>
+              <p><i class="fa-solid fa-phone text-orange-500 mr-2"></i>0542 332 36 96</p>
+            </div>
+          </div>
+
+          <a href="https://www.google.com/maps/place/Turuncu+%C4%B0leti%C5%9Fim+Cep+Telefonu+Teknik+Servis/@41.1582994,27.7994459,19.25z" target="_blank" class="w-full bg-gray-900 hover:bg-orange-500 text-white font-black py-3 px-4 rounded-xl text-xs flex items-center justify-center space-x-2 transition border border-gray-800 hover:border-orange-500">
+            <i class="fa-solid fa-map-location-dot"></i>
+            <span>Google Haritalar'da Yol Tarifi Al</span>
+          </a>
+        </div>
+
+      </div>
+    </section>
+
+  </main>
+
+  <!-- MOBİL SABİT ÇUBUK -->
+  <div class="fixed bottom-0 left-0 right-0 z-40 bg-[#0c0f17]/95 backdrop-blur-xl border-t border-gray-800 p-3 sm:hidden flex items-center justify-between gap-2 shadow-2xl">
+    <a href="tel:05443405959" class="flex-1 bg-gray-900 hover:bg-gray-800 text-white font-black py-2.5 px-3 rounded-xl text-xs flex items-center justify-center space-x-2 border border-gray-800">
+      <i class="fa-solid fa-phone text-orange-500"></i>
+      <span>Hemen Ara</span>
+    </a>
+    <a href="https://wa.me/905443405959?text=Merhaba,%20fiyat%20teklifi%20almak%20istiyorum." target="_blank" class="flex-1 bg-emerald-600 hover:bg-emerald-500 text-white font-black py-2.5 px-3 rounded-xl text-xs flex items-center justify-center space-x-2 shadow-lg">
+      <i class="fa-brands fa-whatsapp text-sm"></i>
+      <span>WhatsApp Teklif</span>
+    </a>
+  </div>
+
+  <!-- FOOTER -->
+  <footer class="bg-[#06070a] border-t border-gray-800 py-8 mb-12 sm:mb-0">
+    <div class="max-w-7xl mx-auto px-4 text-center space-y-4">
+      <span class="text-xl font-black text-white tracking-widest uppercase block">TURUNCU İLETİŞİM</span>
+      <p class="text-xs text-orange-400 font-bold"><i class="fa-solid fa-phone mr-1"></i> 0544 340 59 59 - 0542 332 36 96</p>
+      
+      <div class="flex items-center justify-center space-x-3 pt-2">
+        <a href="https://www.instagram.com/turuncu.cep/" target="_blank" class="w-10 h-10 bg-gray-900 hover:bg-pink-600 border border-gray-800 hover:border-pink-500 rounded-xl flex items-center justify-center text-white text-base transition shadow-lg" title="Instagram">
+          <i class="fa-brands fa-instagram"></i>
+        </a>
+        <a href="https://www.tiktok.com/@turuncu.cep" target="_blank" class="w-10 h-10 bg-gray-900 hover:bg-black border border-gray-800 hover:border-gray-600 rounded-xl flex items-center justify-center text-white text-base transition shadow-lg" title="TikTok">
+          <i class="fa-brands fa-tiktok"></i>
+        </a>
+        <a href="https://turuncuiletisim.sahibinden.com/" target="_blank" class="w-10 h-10 sahibinden-yellow border border-gray-800 rounded-xl flex items-center justify-center text-xs font-black transition shadow-lg" title="Sahibinden Mağazamız">
+          S
+        </a>
+      </div>
+    </div>
+  </footer>
+
 </body>
 </html>
