@@ -160,7 +160,22 @@
   </script>
 </head>
 <body class="bg-[#08090d] text-gray-100 min-h-screen flex flex-col justify-between antialiased selection:bg-orange-500 selection:text-white pb-20 sm:pb-0">
+<!-- Kısa ve Net Çerez Uyarısı -->
+    <div id="mini-cookie" style="position: fixed; bottom: 15px; left: 15px; background: rgba(26, 26, 26, 0.95); color: #ccc; padding: 10px 15px; border-radius: 8px; font-size: 12px; font-family: sans-serif; z-index: 9999; display: flex; align-items: center; gap: 12px; backdrop-filter: blur(5px); border: 1px solid #333; box-shadow: 0 4px 12px rgba(0,0,0,0.3);">
+        <span>🍪 Sizlere daha iyi hizmet sunabilmek için çerezler kullanıyoruz.</span>
+        <button onclick="closeCookie()" style="background: #ff7700; color: #fff; border: none; padding: 5px 12px; border-radius: 4px; cursor: pointer; font-weight: bold; font-size: 11px; white-space: nowrap;">Kabul Et</button>
+    </div>
 
+    <script>
+        function closeCookie() {
+            document.getElementById('mini-cookie').style.display = 'none';
+            localStorage.setItem('cookieClosed', 'true');
+        }
+        if (localStorage.getItem('cookieClosed') === 'true') {
+            document.getElementById('mini-cookie').style.display = 'none';
+        }
+    </script>
+    <!-- Kısa ve Net Çerez Uyarısı Sonu -->
   <!-- GÖRÜNMEYEN GÜÇLÜ SEO KELİME HAVUZU -->
   <div class="sr-only">
     <h1>Çorlu Telefoncu ve Telefon Alım Satım Mağazası</h1>
